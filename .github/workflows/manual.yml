@@ -23,7 +23,7 @@ jobs:
 
       - name: Sets env vars for release
         run: |
-          echo "THE_ENVIRONMENT="github.event.inputs.environment >> $GITHUB_ENV
+          ${{ echo "THE_ENVIRONMENT= github.event.inputs.environment " >> $GITHUB_ENV }}
 
       - name: Echo Branch Name
         run: |
