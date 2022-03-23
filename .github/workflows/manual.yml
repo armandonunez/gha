@@ -8,9 +8,10 @@ on:
       environment:
         type: choice 
         options:
-        - Development
-        - Staging
-        - Production
+        - demo
+        - undemo
+      sha:
+        type: string
   
 jobs:
   example:
@@ -24,9 +25,21 @@ jobs:
       - name: Sets env vars for release
         run: |
           SHA_CUT=$(echo ${{ github.sha }} | head -c 7)
+          FASTLANE_LANE=${{ github.event.inputs.environment }}
+          APP_SHA_REF=$(echo ${{ github.event.inputs.sha }})
           echo "THE_ENVIRONMENT=${{ github.ref_name }}-$SHA_CUT" >> $GITHUB_ENV
+          echo "FASTLANE_LANE=$FASTLANE_LANE" >> $GITHUB_ENV
+          echo "APP_SHA_REF=$APP_SHA_REF" >> $GITHUB_ENV
 
-      - name: Echo Branch Name
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.2
+          bundler-cache: true
+
+      - name: Run Fastlane
         run: |
-          echo "👇👇👇👇👇 Environment Variabes 👇👇👇👇👇"
-          printenv
+          export LC_ALL=en_US.UTF-8
+          export LANG=en_US.UTF-8
+          npm install -g react-native-cli
+          bundle exec fastlane android $FASTLANE_LANE
