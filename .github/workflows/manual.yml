@@ -26,9 +26,10 @@ jobs:
         run: |
           SHA_CUT=$(echo ${{ github.sha }} | head -c 7)
           FASTLANE_LANE=${{ github.event.inputs.environment }}
-          APP_SHA_REF=$(echo ${{ github.event.inputs.sha }})
+          APP_REF_SHA=$(echo ${{ github.event.inputs.sha }})
           echo "THE_ENVIRONMENT=${{ github.ref_name }}-$SHA_CUT" >> $GITHUB_ENV
           echo "FASTLANE_LANE=$FASTLANE_LANE" >> $GITHUB_ENV
+          echo "APP_REF_SHA=$APP_REF_SHA" >> $GITHUB_ENV
       
       - name: Setup node
         uses: actions/setup-node@v1
