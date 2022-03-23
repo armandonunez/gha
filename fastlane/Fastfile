@@ -11,7 +11,7 @@ platform :android do
   end
 
   lane :undemo do
-    app_sha_ref = "SOMETHING - #{(ENV['APP_REF_SHA'].empty?) ? ENV['APP_REF_SHA'] : ''} - END";
+    app_sha_ref = "SOMETHING - #{(ENV["APP_REF_SHA"].empty?) ? ENV['APP_REF_SHA'] : ''} - END";
 
     puts("Something - #{app_sha_ref}");
   end
