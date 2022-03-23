@@ -30,6 +30,11 @@ jobs:
           echo "THE_ENVIRONMENT=${{ github.ref_name }}-$SHA_CUT" >> $GITHUB_ENV
           echo "FASTLANE_LANE=$FASTLANE_LANE" >> $GITHUB_ENV
           echo "APP_SHA_REF=$APP_SHA_REF" >> $GITHUB_ENV
+      
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
@@ -41,5 +46,4 @@ jobs:
         run: |
           export LC_ALL=en_US.UTF-8
           export LANG=en_US.UTF-8
-          npm install -g react-native-cli
           bundle exec fastlane android $FASTLANE_LANE
