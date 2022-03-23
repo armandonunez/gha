@@ -2,17 +2,14 @@ default_platform(:android)
 fastlane_require 'dotenv'
 
 platform :android do
-
-  desc "FOR DEMO PURPOSES ONLY"
   lane :demo
-    if ENV["APP_REF_SHA"].length > 0
+    if (ENV["APP_REF_SHA"].length > 0)
       app_sha_ref = ENV["APP_REF_SHA"];
     end
 
     puts("SOMETHING - #{app_sha_ref}");
   end
 
-  desc "FOR UNDEMO PURPOSES ONLY"
   lane :undemo
     app_sha_ref = ENV["APP_REF_SHA"];
 
