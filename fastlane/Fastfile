@@ -2,7 +2,7 @@ default_platform(:android)
 fastlane_require 'dotenv'
 
 platform :android do
-  lane :demo
+  lane :demo do
     if (ENV["APP_REF_SHA"].length > 0)
       app_sha_ref = ENV["APP_REF_SHA"];
     end
@@ -10,7 +10,7 @@ platform :android do
     puts("SOMETHING - #{app_sha_ref}");
   end
 
-  lane :undemo
+  lane :undemo do
     app_sha_ref = ENV["APP_REF_SHA"];
 
     puts("Something - #{app_sha_ref}");
