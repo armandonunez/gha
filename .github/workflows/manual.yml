@@ -23,7 +23,8 @@ jobs:
 
       - name: Sets env vars for release
         run: |
-          echo "THE_ENVIRONMENT=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+          SHA_CUT=$(echo ${{ github.sha }} | head -c 7)
+          echo "THE_ENVIRONMENT=${{ github.ref_name }}-$SHA_CUT" >> $GITHUB_ENV
 
       - name: Echo Branch Name
         run: |
