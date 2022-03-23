@@ -17,7 +17,5 @@ platform :android do
     app_sha_ref = ENV["APP_REF_SHA"]
 
     puts("#{app_sha_ref}")
-    
   end
-
 end
