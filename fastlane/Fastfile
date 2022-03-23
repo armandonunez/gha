@@ -3,15 +3,15 @@ fastlane_require 'dotenv'
 
 platform :android do
   lane :demo do
-    if "#{ENV['APP_SHA_REF']}".length > 0
-      app_sha_ref = ENV["APP_SHA_REF"];
+    if "#{ENV['APP_REF_SHA']}".length > 0
+      app_sha_ref = ENV["APP_REF_SHA"];
     end
 
     puts("SOMETHING - #{app_sha_ref}");
   end
 
   lane :undemo do
-    app_sha_ref = "SOMETHING - #{(ENV['APP_SHA_REF'].empty?) ? ENV['APP_SHA_REF'] : ''} - END";
+    app_sha_ref = "SOMETHING - #{(ENV['APP_REF_SHA'].empty?) ? ENV['APP_REF_SHA'] : ''} - END";
 
     puts("Something - #{app_sha_ref}");
   end
