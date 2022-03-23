@@ -1,0 +1,31 @@
+name: Manual Trigger Lambdas
+on:
+  push:
+    branches:
+      - development
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice 
+        options:
+        - Development
+        - Staging
+        - Production
+  
+jobs:
+  example:
+    name: Echo Branch Name
+    runs-on: ubuntu-latest
+    if: ${{ github.actor }} == $WORKFLOW_ACTOR
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+
+      - name: Sets env vars for release
+        run: |
+          echo "THE_ENVIRONMENT="github.event.inputs.environment >> $GITHUB_ENV
+
+      - name: Echo Branch Name
+        run: |
+          echo "👇👇👇👇👇 Environment Variabes 👇👇👇👇👇"
+          printenv
