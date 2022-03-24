@@ -12,10 +12,16 @@ platform :android do
 
   lane :undemo do
     ref_sha_var = ENV["APP_REF_SHA"];
+    ref1_sha_var = ENV["APP1_REF_SHA"];
+
     app_sha_ref = "SOMETHING - #{ref_sha_var || ''} - END";
+    app1_sha_ref = "SOMETHING - #{ref1_sha_var || ''} - END";
 
     puts("Something - #{app_sha_ref}");
     puts("ref_sha_var: #{ref_sha_var}");
+
+    puts("Should fail: ref1_sha_var: #{app1_sha_ref}");
+
     puts("ENV VAR: #{ENV["APP_REF_SHA"]}")
   end
 end
