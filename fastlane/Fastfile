@@ -12,7 +12,7 @@ platform :android do
 
   lane :undemo do
     ref_sha_var = ENV["APP_REF_SHA"];
-    app_sha_ref = "SOMETHING - #{(ref_sha_var.empty?) ? ref_sha_var : ''} - END";
+    app_sha_ref = "SOMETHING - #{ref_sha_var || ''} - END";
 
     puts("Something - #{app_sha_ref}");
     puts("ref_sha_var: #{ref_sha_var}");
