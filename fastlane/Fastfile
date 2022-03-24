@@ -15,7 +15,7 @@ platform :android do
     app_sha_ref = "SOMETHING - #{(ref_sha_var.empty?) ? ref_sha_var : ''} - END";
 
     puts("Something - #{app_sha_ref}");
-    puts("ref_sha_var: #{app_sha_ref}");
+    puts("ref_sha_var: #{ref_sha_var}");
     puts("ENV VAR: #{ENV["APP_REF_SHA"]}")
   end
 end
