@@ -12,6 +12,8 @@ on:
         - undemo
       sha:
         type: string
+      branch:
+        type: string
   
 jobs:
   example:
@@ -31,22 +33,18 @@ jobs:
           echo "FASTLANE_LANE=$FASTLANE_LANE" >> $GITHUB_ENV
           echo "APP_REF_SHA=$APP_REF_SHA" >> $GITHUB_ENV
       
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
 
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.2
-          bundler-cache: true
-
-      - name: Run Fastlane
+      - name: Run index.js
         run: |
-          export LC_ALL=en_US.UTF-8
-          export LANG=en_US.UTF-8
-          bundle exec fastlane android $FASTLANE_LANE
+          node index.js 
 
       - name: Print env
         run: |
