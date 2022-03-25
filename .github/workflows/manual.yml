@@ -31,7 +31,7 @@ jobs:
           [ ! -z $GHA_INPUT ] && echo "MAIN_BRANCH=$GHA_INPUT" >> $GITHUB_ENV || echo "MAIN_BRANCH=$GITHUB_REF" >> $GITHUB_ENV
 
       - name: Clone Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ env.MAIN_BRANCH }}
 
@@ -44,10 +44,6 @@ jobs:
           echo "FASTLANE_LANE=$FASTLANE_LANE" >> $GITHUB_ENV
           echo "APP_REF_SHA=$APP_REF_SHA" >> $GITHUB_ENV
       
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.inputs.branch }}
-
       - name: Setup node
         uses: actions/setup-node@v1
         with:
