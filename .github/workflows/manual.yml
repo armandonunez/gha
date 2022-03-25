@@ -2,7 +2,7 @@ name: Manual Trigger Lambdas
 on:
   push:
     branches:
-      - development
+      - main
   workflow_dispatch:
     inputs:
       environment:
@@ -15,14 +15,24 @@ on:
       branch:
         type: string
   
+env:
+  MAIN_BRANCH: AIMW
+
 jobs:
   example:
     name: Echo Branch Name
     runs-on: ubuntu-latest
     if: ${{ github.actor }} == $WORKFLOW_ACTOR
     steps:
+      - name: Check if input string set
+        if: github.event == 'workflow_dispatch'
+        run: |
+          GHA_INPUT=$(${{ github.event.inputs.branch }} | xargs)
+          [ ! -z $GHA_INPUT ] && echo "MAIN_BRANCH=$GHA_INPUT" >> $GITHUB_ENV
+
       - name: Clone Repository
         uses: actions/checkout@v2
+          ref: $MAIN_BRANCH 
 
       - name: Sets env vars for release
         run: |
