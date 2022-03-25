@@ -33,7 +33,7 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v2
         with:
-          ref: $MAIN_BRANCH 
+          ref: ${{ env.$MAIN_BRANCH }}
 
       - name: Sets env vars for release
         run: |
