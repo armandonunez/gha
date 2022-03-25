@@ -28,7 +28,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         run: |
           GHA_INPUT=$(echo "${{ github.event.inputs.branch }}" | xargs)
-          [ ! -z $GHA_INPUT ] && echo "MAIN_BRANCH=$GHA_INPUT" >> $GITHUB_ENV
+          [ ! -z $GHA_INPUT ] && echo "MAIN_BRANCH=$GHA_INPUT" >> $GITHUB_ENV || echo "${{ env.GITHUB_REF }}" >> $GITHUB_ENV
 
       - name: Clone Repository
         uses: actions/checkout@v2
