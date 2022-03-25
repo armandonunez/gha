@@ -16,7 +16,7 @@ on:
         type: string
   
 env:
-  MAIN_BRANCH: AIMW
+  MAIN_BRANCH: main
 
 jobs:
   example:
