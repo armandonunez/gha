@@ -27,7 +27,7 @@ jobs:
       - name: Check if input string set
         if: github.event_name == 'workflow_dispatch'
         run: |
-          GHA_INPUT=$(${{ github.event.inputs.branch }} | xargs)
+          GHA_INPUT=$(echo ${{ github.event.inputs.branch }} | xargs)
           [ ! -z $GHA_INPUT ] && echo "MAIN_BRANCH=$GHA_INPUT" >> $GITHUB_ENV
 
       - name: Clone Repository
