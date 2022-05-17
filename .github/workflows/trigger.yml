@@ -1,0 +1,8 @@
+name: Import Workflow
+on:
+  workflow_call:
+
+jobs:
+  trigger:
+    run: |
+      echo "Some job has been run in the gha repo"
