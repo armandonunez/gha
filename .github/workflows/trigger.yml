@@ -4,5 +4,7 @@ on:
 
 jobs:
   trigger:
-    run: |
-      echo "Some job has been run in the gha repo"
+    steps:
+      - name: Run an echo
+        run: |
+          echo "Some job has been run in the gha repo"
