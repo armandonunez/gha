@@ -26,5 +26,5 @@ jobs:
           echo "Commit message: ${{ github.event.head_commit.message }}"
           echo "Environment: ${{ inputs.environment }}"
           echo "PR Number: ${{ github.event.number }}"
-          echo "${{ github }}"
-          echo "${{ github.event }}
+          echo "${{ toJSON(github) }}"
+          echo "${{ toJSON(github.event) }}"
