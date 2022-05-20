@@ -1,6 +1,10 @@
 name: Import Workflow
 on:
   workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
 
 jobs:
   trigger:
@@ -8,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.environment }}
 
       - name: Run an echo
         run: |
