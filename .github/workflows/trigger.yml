@@ -28,5 +28,6 @@ jobs:
           echo "Commit message: ${{ toJSON(github.sha) }}"
           echo "Environment: ${{ inputs.environment }}"
           echo "GITHUB EVENT: $GITHUB_EVENT_PATH"
+          echo "KEYS: $KEYS"
           echo "PR Number: $PR"
           echo "${{ toJSON(github) }}"
