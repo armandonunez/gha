@@ -26,5 +26,6 @@ jobs:
           echo "Repo name and org name: ${{github.repository_owner}}/${{ github.event.repository.name }}"
           echo "Commit message: ${{ toJSON(github.sha) }}"
           echo "Environment: ${{ inputs.environment }}"
+          echo "GITHUB EVENT: $GITHUB_EVENT_PATH"
           echo "PR Number: $PR"
           echo "${{ toJSON(github) }}"
