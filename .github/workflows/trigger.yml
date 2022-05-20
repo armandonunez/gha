@@ -21,9 +21,10 @@ jobs:
 
       - name: Run an echo
         run: |
+          PR=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           echo "Some job has been run in the gha repo"
           echo "Repo name and org name: ${{github.repository_owner}}/${{ github.event.repository.name }}"
           echo "Commit message: ${{ toJSON(github.sha) }}"
           echo "Environment: ${{ inputs.environment }}"
-          echo "PR Number: ${{ github.event.number }}"
+          echo "PR Number: $PR"
           echo "${{ toJSON(github) }}"
