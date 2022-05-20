@@ -22,3 +22,7 @@ jobs:
       - name: Run an echo
         run: |
           echo "Some job has been run in the gha repo"
+          echo "Repo name and org name: ${{github.event.repository_owner}}/${{ github.event.repository.name }}"
+          echo "Commit message: ${{ github.event.head_commit.message }}"
+          echo "Environment: ${{ inputs.environment }}"
+          echo "PR Number: ${{ github.event.number }}
