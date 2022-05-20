@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Echo
         run: |
-          echo "The variable passed: ${{ github.event.inputs.environment }}" 
+          echo "The variable passed: ${{ inputs.environment }}" 
 
       - name: Checkout
         uses: actions/checkout@v2
