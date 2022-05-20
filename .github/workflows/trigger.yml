@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.environment }}
+          ref: ${{ inputs.environment }}
 
       - name: Run an echo
         run: |
