@@ -5,6 +5,10 @@ on:
       environment:
         type: string
         required: true
+      pull_request:
+        type: boolean
+        required: true
+
 
 jobs:
   trigger:
@@ -23,11 +27,9 @@ jobs:
         run: |
           PR=$(jq --raw-output '.pull_request.number' "$GITHUB_EVENT_PATH")
           KEYS=$(jq --raw-output 'keys' "$GITHUB_EVENT_PATH")
+          echo "Is PR: ${{ inputs.pull_request }} "
           echo "Some job has been run in the gha repo"
           echo "Repo name and org name: ${{github.repository_owner}}/${{ github.event.repository.name }}"
           echo "Commit message: ${{ toJSON(github.sha) }}"
           echo "Environment: ${{ inputs.environment }}"
-          echo "GITHUB EVENT: $GITHUB_EVENT_PATH"
-          echo "KEYS: $KEYS"
           echo "PR Number: $PR"
-          echo "${{ toJSON(github) }}"
