@@ -10,10 +10,14 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     steps:
+      - name: Echo
+        run: |
+          echo "The variable passed: ${{ github.event.inputs.environment }}" 
+
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.inputs.environment }}
+          with:
+            ref: ${{ github.event.inputs.environment }}
 
       - name: Run an echo
         run: |
