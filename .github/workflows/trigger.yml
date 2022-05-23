@@ -30,6 +30,8 @@ jobs:
         run: |
           PR=$(jq --raw-output '.pull_request.number' "$GITHUB_EVENT_PATH")
           KEYS=$(jq --raw-output 'keys' "$GITHUB_EVENT_PATH")
+          NUMBER=$(EVEN_NUMBER+2)
+          echo "NUMBER: $NUMBER"
           echo "Is PR: ${{ inputs.pull_request }} "
           echo "Event type: ${{ inputs.event_type }} "
           echo "Some job has been run in the gha repo"
@@ -37,3 +39,5 @@ jobs:
           echo "Commit message: ${{ toJSON(github.sha) }}"
           echo "Environment: ${{ inputs.environment }}"
           echo "PR Number: $PR"
+        env:
+          EVEN_NUMBER: ${{ secrets.EVEN_NUMBER }}
