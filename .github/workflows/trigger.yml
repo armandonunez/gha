@@ -30,7 +30,7 @@ jobs:
         run: |
           PR=$(jq --raw-output '.pull_request.number' "$GITHUB_EVENT_PATH")
           KEYS=$(jq --raw-output 'keys' "$GITHUB_EVENT_PATH")
-          NUMBER=$(EVEN_NUMBER+2)
+          NUMBER=$(echo $(($EVEN_NUMBER+2)) )
           echo "NUMBER: $NUMBER"
           echo "Is PR: ${{ inputs.pull_request }} "
           echo "Event type: ${{ inputs.event_type }} "
