@@ -32,6 +32,7 @@ jobs:
           KEYS=$(jq --raw-output 'keys' "$GITHUB_EVENT_PATH")
           [ "$EVEN_NUMBER" -gt 97 ] && echo "97 Greater" || echo "97 Not Greater"
           [ "$EVEN_NUMBER" -gt 98 ] && echo "98 Greater" || echo "97 Not Greater"
+          echo $(( $EVEN_NUMBER + 2))
           echo "Is PR: ${{ inputs.pull_request }} "
           echo "Event type: ${{ inputs.event_type }} "
           echo "Some job has been run in the gha repo"
