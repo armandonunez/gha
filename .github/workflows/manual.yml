@@ -25,10 +25,9 @@ jobs:
     if: ${{ github.actor }} == $WORKFLOW_ACTOR
     steps:
       - name: Check if input string set
-        if: github.event_name == 'workflow_dispatch'
         run: |
           GHA_INPUT=$(echo "${{ github.event.inputs.branch }}" | xargs)
-          [ ! -z $GHA_INPUT ] && echo "MAIN_BRANCH=$GHA_INPUT" >> $GITHUB_ENV || echo "MAIN_BRANCH=$GITHUB_REF_NAME" >> $GITHUB_ENV
+         { [ ! -z $GHA_INPUT ] && [ ${{ github.event_name }} == 'workflow_dispatch' ] } && echo "MAIN_BRANCH=$GHA_INPUT" >> $GITHUB_ENV || echo "MAIN_BRANCH=$GITHUB_REF_NAME" >> $GITHUB_ENV
 
       - name: Clone Repository
         uses: actions/checkout@v3
