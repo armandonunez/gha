@@ -25,7 +25,7 @@ jobs:
         run: |
           # Setting up some variables
           GHA_INPUT=$(echo "${{ github.event.inputs.branch }}" | xargs)
-          MAIN_BRANCH=$({ [ ! -z $GHA_INPUT ] && [ "${{ github.event_name }}" = 'workflow_dispatch' ]; } && echo "$GHA_INPUT" || echo "$GITHUB_REF") 
+          MAIN_BRANCH=$({ [ ! -z $GHA_INPUT ] && [ "${{ github.event_name }}" = 'workflow_dispatch' ]; } && echo "$GHA_INPUT" || echo "$GITHUB_REF_NAME") 
           SHA_CUT=$(echo ${{ github.sha }} | head -c 7)
           APP_REF_SHA="$MAIN_BRANCH-$SHA_CUT"
 
