@@ -33,15 +33,7 @@ jobs:
           # For subsequent steps
           { [ ! -z $GHA_INPUT ] && [ "${{ github.event_name }}" = 'workflow_dispatch' ]; } && echo "MAIN_BRANCH=$GHA_INPUT" >> $GITHUB_ENV || echo "MAIN_BRANCH=$MAIN_BRANCH" >> $GITHUB_ENV
           echo "APP_REF_SHA=$APP_REF_SHA" >> $GITHUB_ENV
-
-          echo "${{ env.MAIN_BRANCH }}"
-          echo "${{ env.APP_REF_SHA }}"
           
-      - name: Set up environment variables
-        run: |
-          SHA_CUT=$(echo ${{ github.sha }} | head -c 7)
-          echo "APP_REF_SHA=${{ env.MAIN_BRANCH }}-$SHA_CUT" >> $GITHUB_ENV
-
       - name: Clone Repository
         uses: actions/checkout@v3
         with:
