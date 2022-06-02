@@ -25,13 +25,13 @@ jobs:
         run: |
           # Setting up some variables
           GHA_INPUT=$(echo "${{ github.event.inputs.branch }}" | xargs)
-          MAIN_BRANCH=$GITHUB_REF_NAME
+          MAIN_BRANCH=$({ [ ! -z $GHA_INPUT ] && [ "${{ github.event_name }}" = 'workflow_dispatch' ]; } && echo "$GHA_INPUT" || echo "$GITHUB_REF") 
           SHA_CUT=$(echo ${{ github.sha }} | head -c 7)
           APP_REF_SHA="$MAIN_BRANCH-$SHA_CUT"
 
           # Checking event type to set MAIN_BRANCH
           # For subsequent steps
-          { [ ! -z $GHA_INPUT ] && [ "${{ github.event_name }}" = 'workflow_dispatch' ]; } && echo "MAIN_BRANCH=$GHA_INPUT" >> $GITHUB_ENV || echo "MAIN_BRANCH=$MAIN_BRANCH" >> $GITHUB_ENV
+          echo "MAIN_BRANCH=$MAIN_BRANCH" >> $GITHUB_ENV
           echo "APP_REF_SHA=$APP_REF_SHA" >> $GITHUB_ENV
           
       - name: Clone Repository
